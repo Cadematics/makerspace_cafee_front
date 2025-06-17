@@ -6,6 +6,8 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import Navbar from "./components/Navbar";
 import ContactPage from "./pages/ContactPage"
+import ProjectDetailsPage from './pages/ProjectDetailsPage';
+
 
 
 function App() {
@@ -21,9 +23,16 @@ function App() {
 
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/projects/:id" element={<ProjectDetailsPage />} />
+
+
+
       </Routes>
     </Router>
   );
 }
 
 export default App;
+
+
+

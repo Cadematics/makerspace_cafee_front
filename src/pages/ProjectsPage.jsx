@@ -9,13 +9,14 @@ function ProjectsPage() {
   useEffect(() => {
     axios
       .get("http://127.0.0.1:8000/api/projects/", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        // headers: {
+        //   Authorization: `Bearer ${token}`,
+        // }
+        // ,
       })
       .then((response) => setProjects(response.data))
       .catch((error) => console.error("Error fetching projects:", error));
-  }, [token]);
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-50 px-4 py-10">
