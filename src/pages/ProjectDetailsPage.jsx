@@ -7,7 +7,7 @@ export default function ProjectDetailsPage() {
   const { id } = useParams();
   const [project, setProject] = useState(null);
   const [rewards, setRewards] = useState([]); // ✅ Define rewards state
-  const [activeTab, setActiveTab] = useState("Campaign");
+  const [activeTab, setActiveTab] = useState("Rewards");
   const [selectedReward, setSelectedReward] = useState(null);
 
   useEffect(() => {
@@ -55,7 +55,9 @@ export default function ProjectDetailsPage() {
               pledged of ${parseFloat(project.funding_goal).toLocaleString()}{" "}
               goal
             </p>
-            <h3 className="text-2xl font-semibold text-gray-900">683</h3>
+            <h3 className="text-2xl font-semibold text-gray-900">
+              {project.backers_count}
+            </h3>
             <p className="text-gray-600 mb-4">backers</p>
             <h3 className="text-2xl font-semibold text-gray-900">{daysToGo}</h3>
             <p className="text-gray-600">days to go</p>
@@ -125,13 +127,13 @@ export default function ProjectDetailsPage() {
           {activeTab === "Rewards" && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <h2 className="text-xl font-bold mb-4">Available Rewards</h2>
+                <h2 className="text-xl font-bold mb-4">Choose a Reward</h2>
                 {rewards.length > 0 ? (
                   rewards.map((reward) => (
                     <RewardCard
                       key={reward.id}
                       reward={reward}
-                      onSelect={() => setSelectedReward(reward)}
+                      projectId={project.id}
                     />
                   ))
                 ) : (

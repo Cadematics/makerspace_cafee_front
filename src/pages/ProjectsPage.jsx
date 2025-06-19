@@ -31,11 +31,12 @@ function ProjectsPage() {
           ))}
         </div>
       ) : (
-        <p className="text-center text-gray-500 text-lg">No projects available.</p>
+        <p className="text-center text-gray-500 text-lg">
+          No projects available.
+        </p>
       )}
     </div>
   );
 }
 
 export default ProjectsPage;
-

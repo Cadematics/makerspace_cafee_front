@@ -1,12 +1,14 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
+import PetitionSection from "../components/PetitionSection";
 
 function HomePage() {
   return (
     <div className="homepage">
-      <header className="h-screen w-full flex flex-col items-center justify-center text-center bg-cover bg-center bg-no-repeat text-white px-4"
-              style={{ backgroundImage: `url('/banner.jpg')` }}>
+      <header
+        className="h-screen w-full flex flex-col items-center justify-center text-center bg-cover bg-center bg-no-repeat text-white px-4"
+        style={{ backgroundImage: `url('/banner.jpg')` }}
+      >
         <h2 className="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg">
           Welcome to Our Makerspace
         </h2>
@@ -20,28 +22,16 @@ function HomePage() {
           Explore Projects
         </Link>
       </header>
+      <PetitionSection />
     </div>
   );
 }
 
 export default HomePage;
 
-
-
-
-
-
-
-
-
-
-
-
 // import React from "react";
 // import { Link } from "react-router-dom";
 // import "../styles/HomePage.css"; // We'll create a CSS file next
-
-
 
 // function HomePage() {
 //   return (

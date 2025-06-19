@@ -34,17 +34,20 @@ function RegisterPage() {
   };
 
   return (
-    <div>
-      <h2>Register</h2>
-      <form onSubmit={handleRegister}>
-        {error && <p style={{ color: "red" }}>{error}</p>}
-        
+    <div className="max-w-md mx-auto mt-10 p-8 bg-white rounded-2xl shadow-lg">
+      <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
+        Register
+      </h2>
+      <form onSubmit={handleRegister} className="space-y-4">
+        {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+
         <input
           type="text"
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <input
           type="email"
@@ -52,6 +55,7 @@ function RegisterPage() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <input
           type="password"
@@ -59,6 +63,7 @@ function RegisterPage() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <input
           type="password"
@@ -66,11 +71,55 @@ function RegisterPage() {
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-        
-        <button type="submit">Register</button>
+
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition duration-300"
+        >
+          Register
+        </button>
       </form>
     </div>
+
+    // <div>
+    //   <h2>Register</h2>
+    //   <form onSubmit={handleRegister}>
+    //     {error && <p style={{ color: "red" }}>{error}</p>}
+
+    //     <input
+    //       type="text"
+    //       placeholder="Username"
+    //       value={username}
+    //       onChange={(e) => setUsername(e.target.value)}
+    //       required
+    //     />
+    //     <input
+    //       type="email"
+    //       placeholder="Email"
+    //       value={email}
+    //       onChange={(e) => setEmail(e.target.value)}
+    //       required
+    //     />
+    //     <input
+    //       type="password"
+    //       placeholder="Password"
+    //       value={password}
+    //       onChange={(e) => setPassword(e.target.value)}
+    //       required
+    //     />
+    //     <input
+    //       type="password"
+    //       placeholder="Confirm Password"
+    //       value={confirmPassword}
+    //       onChange={(e) => setConfirmPassword(e.target.value)}
+    //       required
+    //     />
+
+    //     <button type="submit">Register</button>
+    //   </form>
+    // </div>
   );
 }
 
