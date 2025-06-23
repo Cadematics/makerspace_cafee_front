@@ -10,7 +10,7 @@ function PetitionSection() {
       <h2 className="text-3xl font-bold mb-6 text-center">Support Our Cause</h2>
 
       <div className="h-screen flex">
-        <div className="w-1/2 overflow-y-auto p-4 bg-white">
+        <div className="w-1/2 sticky top-0">
           <PetitionMap />
         </div>
         <div className="w-1/2 overflow-y-auto p-4 bg-white">
