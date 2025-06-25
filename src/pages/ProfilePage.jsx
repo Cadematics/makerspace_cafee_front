@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import api from "../axios"; // adjust path if needed
 
 function ProfilePage() {
   const [userInfo, setUserInfo] = useState(null);
@@ -13,62 +14,102 @@ function ProfilePage() {
 
   const token = localStorage.getItem("access_token");
 
+  // import api from "../axios"; // adju  st the path to your axios.js
+
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await fetch("http://localhost:8000/api/me/", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        if (!response.ok) throw new Error("Failed to fetch user info");
-
-        const data = await response.json();
-        setUserInfo(data);
+        const response = await api.get("me/");
+        setUserInfo(response.data);
+        console.log("User info", response.data);
       } catch (err) {
-        setError(err.message);
+        setError("Failed to fetch user info");
+        console.error(err);
       }
     };
 
     const fetchMyProjects = async () => {
       try {
-        const response = await fetch("http://localhost:8000/api/my-projects/", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        if (!response.ok) throw new Error("Failed to fetch your projects");
-
-        const data = await response.json();
-        setMyProjects(data);
+        const response = await api.get("my-projects/");
+        setMyProjects(response.data);
       } catch (err) {
-        setError(err.message);
+        setError("Failed to fetch your projects");
+        console.error(err);
       }
     };
 
     const fetchMyBackings = async () => {
       try {
-        const response = await fetch("http://localhost:8000/api/my-backings/", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        if (!response.ok) throw new Error("Failed to fetch your backings");
-
-        const data = await response.json();
-        setMyBackings(data);
+        const response = await api.get("my-backings/");
+        setMyBackings(response.data);
       } catch (err) {
-        setError(err.message);
+        setError("Failed to fetch your backings");
+        console.error(err);
       }
     };
 
-    fetchMyBackings();
     fetchUserInfo();
     fetchMyProjects();
+    fetchMyBackings();
   }, []);
+
+  // useEffect(() => {
+
+  //   const fetchUserInfo = async () => {
+  //     try {
+  //       const response = await fetch("http://localhost:8000/api/me/", {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       });
+
+  //       if (!response.ok) throw new Error("Failed to fetch user info");
+
+  //       const data = await response.json();
+  //       setUserInfo(data);
+  //     } catch (err) {
+  //       setError(err.message);
+  //     }
+  //   };
+
+  //   const fetchMyProjects = async () => {
+  //     try {
+  //       const response = await fetch("http://localhost:8000/api/my-projects/", {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       });
+
+  //       if (!response.ok) throw new Error("Failed to fetch your projects");
+
+  //       const data = await response.json();
+  //       setMyProjects(data);
+  //     } catch (err) {
+  //       setError(err.message);
+  //     }
+  //   };
+
+  //   const fetchMyBackings = async () => {
+  //     try {
+  //       const response = await fetch("http://localhost:8000/api/my-backings/", {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       });
+
+  //       if (!response.ok) throw new Error("Failed to fetch your backings");
+
+  //       const data = await response.json();
+  //       setMyBackings(data);
+  //     } catch (err) {
+  //       setError(err.message);
+  //     }
+  //   };
+
+  //   fetchMyBackings();
+  //   fetchUserInfo();
+  //   fetchMyProjects();
+  // }, []);
 
   return (
     <div className="max-w-5xl mx-auto p-6">
@@ -78,9 +119,21 @@ function ProfilePage() {
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-4">
             {/* Avatar (initials) */}
-            <div className="w-16 h-16 rounded-full bg-gray-300 flex items-center justify-center text-xl font-bold text-white">
+            {userInfo.avatar ? (
+              <img
+                src={userInfo.avatar}
+                alt="Avatar"
+                className="w-16 h-16 rounded-full object-cover"
+              />
+            ) : (
+              <div className="w-16 h-16 rounded-full bg-gray-300 flex items-center justify-center text-xl font-bold text-white">
+                {userInfo.username.charAt(0).toUpperCase()}
+              </div>
+            )}
+
+            {/* <div className="w-16 h-16 rounded-full bg-gray-300 flex items-center justify-center text-xl font-bold text-white">
               {userInfo.username}
-            </div>
+            </div> */}
             <div>
               <h2 className="text-2xl font-bold">{userInfo.username}</h2>
               <p className="text-gray-600">{userInfo.email}</p>

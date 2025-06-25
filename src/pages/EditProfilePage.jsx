@@ -6,12 +6,24 @@ export default function EditProfilePage() {
   const [profile, setProfile] = useState(null);
   const [form, setForm] = useState({ username: "", email: "", bio: "" });
   const [message, setMessage] = useState("");
+  const [usernameAvailable, setUsernameAvailable] = useState(true);
+
   const navigate = useNavigate();
   const token = localStorage.getItem("access_token");
 
+  const checkUsername = async (value) => {
+    if (value.length < 3) return;
+    try {
+      const res = await axios.get(`/api/check-username/?username=${value}`);
+      setUsernameAvailable(res.data.available);
+    } catch {
+      setUsernameAvailable(false);
+    }
+  };
+
   useEffect(() => {
     axios
-      .get("/api/me/", {
+      .get("http://localhost:8000/api/me/", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -25,13 +37,18 @@ export default function EditProfilePage() {
   }, []);
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+
+    if (name === "username") {
+      checkUsername(value);
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .put("/api/me/", form, {
+      .put("http://localhost:8000/api/me/", form, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -60,6 +77,15 @@ export default function EditProfilePage() {
             required
           />
         </div>
+        {form.username && (
+          <p
+            className={`text-sm ${
+              usernameAvailable ? "text-green-600" : "text-red-600"
+            }`}
+          >
+            {usernameAvailable ? "Username is available" : "Username is taken"}
+          </p>
+        )}
 
         <div>
           <label className="block mb-1">Email</label>
