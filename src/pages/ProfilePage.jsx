@@ -148,6 +148,22 @@ function ProfilePage() {
         </div>
       )}
 
+      {/* Divider */}
+      <hr className="border-t border-gray-300 my-4" />
+
+      {/* Bio Section */}
+
+      {/* {console.log("user info:", userInfo.bio)} */}
+      {userInfo && (
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold mb-1">About Me</h3>
+          <p className="text-gray-700">{userInfo.bio}</p>
+        </div>
+      )}
+
+      {/* Divider */}
+      <hr className="border-t border-gray-300 my-4" />
+
       {/* Tabs */}
       <div className="mb-4">
         <button

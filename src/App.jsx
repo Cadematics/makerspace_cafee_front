@@ -13,6 +13,13 @@ import CreatorDashboard from "./pages/CreatorDashboard";
 import BackerDashboard from "./pages/BackerDashboard";
 import Footer from "./components/Footer";
 import EditProfilePage from "./pages/EditProfilePage";
+import CalendarPage from "./pages/CalendarPage";
+import DashboardPage from "./pages/DashboardPage";
+import EventDetailPage from "./pages/EventDetailPage";
+
+import SuccessPage from "./pages/SuccessPage";
+import CancelPage from "./pages/CancelPage";
+// other imports
 
 function App() {
   return (
@@ -32,8 +39,15 @@ function App() {
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/profile/edit" element={<EditProfilePage />} />
 
+            <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/dashboard/creator" element={<CreatorDashboard />} />
             <Route path="/dashboard/backer" element={<BackerDashboard />} />
+
+            <Route path="/events" element={<CalendarPage />} />
+            <Route path="/events/:id" element={<EventDetailPage />} />
+
+            <Route path="/success" element={<SuccessPage />} />
+            <Route path="/cancel" element={<CancelPage />} />
           </Routes>
         </main>
         <Footer />
