@@ -66,6 +66,15 @@ function Navbar() {
         </li>
         <li>
           <Link
+            to="/crowdfunding-events"
+            className="hover:text-orange-400 transition duration-200"
+          >
+            Crowdfunding Events
+          </Link>
+        </li>
+
+        <li>
+          <Link
             to="/contact"
             className="hover:text-orange-400 transition duration-200"
           >

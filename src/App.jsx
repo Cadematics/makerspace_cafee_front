@@ -19,6 +19,10 @@ import EventDetailPage from "./pages/EventDetailPage";
 
 import SuccessPage from "./pages/SuccessPage";
 import CancelPage from "./pages/CancelPage";
+
+import CrowdfundingEventListPage from "./pages/CrowdfundingEventListPage";
+import CrowdfundingEventDetailPage from "./pages/CrowdfundingEventDetailPage";
+
 // other imports
 
 function App() {
@@ -48,6 +52,15 @@ function App() {
 
             <Route path="/success" element={<SuccessPage />} />
             <Route path="/cancel" element={<CancelPage />} />
+
+            <Route
+              path="/crowdfunding-events"
+              element={<CrowdfundingEventListPage />}
+            />
+            <Route
+              path="/crowdfunding-events/:id"
+              element={<CrowdfundingEventDetailPage />}
+            />
           </Routes>
         </main>
         <Footer />
